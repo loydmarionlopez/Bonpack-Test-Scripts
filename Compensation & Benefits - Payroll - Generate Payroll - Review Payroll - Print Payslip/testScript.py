@@ -23,7 +23,7 @@ try:
     # Step 5: Click on the "Password" text field and Step 6: Enter the password
     password_field = driver.find_element(By.NAME, "_password")
     password_field.click()
-    password_field.send_keys("quadrant")  # Replace with the actual password
+    password_field.send_keys("quadrant")  # Reset the passwords first
 
     # Step 7: Click on the "SIGN IN" button
     sign_in_button = driver.find_element(By.NAME, "submit_btn")
@@ -58,7 +58,7 @@ try:
 
     # Step 14: Click on "Period Cut-Off" text field
     period_cutoff_field = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "date_from_date_to")))
-    period_cutoff_field.send_keys("10/06/2024  -  10/20/2024" + Keys.RETURN)
+    period_cutoff_field.send_keys("10/06/2024  -  10/20/2024" + Keys.RETURN) # Replace the date to generate a new payroll.
 
     # Step 15: Assert "Review Payroll" link text
     review_payroll_link = WebDriverWait(driver, 10).until(
@@ -86,7 +86,7 @@ try:
     
     search_field_input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//label[text()='Search: ']")))
     search_field_input.click()
-    search_field_input.send_keys("altares" + Keys.RETURN)
+    search_field_input.send_keys("altares" + Keys.RETURN) # Just replace the name if you want
  
     view_details_link = WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
     (By.CSS_SELECTOR, "a[href='/payroll/details/16688/review']") # replace ID if necessary
