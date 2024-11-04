@@ -42,41 +42,31 @@ try:
     payroll_link = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Generate Semi-monthly Payroll")))
     payroll_link.click()
 
-    # Step 12: Assert <label> element text equals "Cutoff Group"
-    # cutoff_label = WebDriverWait(driver, 10).until(
-    # EC.visibility_of_element_located((By.XPATH, "//span[text()='-- Select Cutoff Group --']"))
-    # )
 
-    # assert cutoff_label.text == "Cutoff Group"
-
-    # Step 13: Click on <span> with "-- Select Cutoff Group --" and Step 14: Select "Direct"
+    # Step 12: Click on <span> with "-- Select Cutoff Group --" and Step 14: Select "Direct"
     cutoff_group_span = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//span[text()='-- Select Cutoff Group --']")))
     cutoff_group_span.click()
     
     factory_overhead = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//li[text()='Direct Labor']")))
     factory_overhead.click()
 
-    # Step 15: Click on <span> with "-- Select Cutoff --" and Step 16: Select "2nd Cutoff"
+    # Step 13: Click on <span> with "-- Select Cutoff --" and Step 16: Select "2nd Cutoff"
     cutoff_span = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//span[text()='-- Select Cutoff --']")))
     cutoff_span.click()
     second_cutoff = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//li[text()='2nd Cutoff']")))
     second_cutoff.click()
 
-    # Step 17: Click on "Period Cut-Off" text field
+    # Step 14: Click on "Period Cut-Off" text field
     period_cutoff_field = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "date_from_date_to")))
     period_cutoff_field.send_keys("10/06/2024  -  10/20/2024" + Keys.RETURN)
 
-    # Step 21: Click on the "Generate Payroll" button
-    # generate_payroll_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "btn_generate")))
-    # generate_payroll_button.click()
-
-    # Step 22: Assert "Review Payroll" link text
+    # Step 15: Assert "Review Payroll" link text
     review_payroll_link = WebDriverWait(driver, 10).until(
     EC.element_to_be_clickable((By.LINK_TEXT, "Review Payroll"))
     )
     assert review_payroll_link.get_attribute("href") == "https://bonpackhr.qalphalabs.com/payroll/review"
 
-    # Step 23: Click on "Review Payroll" link
+    # Step 16: Click on "Review Payroll" link
     driver.execute_script("arguments[0].scrollIntoView(true);", review_payroll_link)
     driver.execute_script("arguments[0].click();", review_payroll_link)
     
@@ -89,7 +79,7 @@ try:
     payroll_filter_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "btn_filter")))
     payroll_filter_button.click()
 
-    # Step 24: Click on the "Search:" text field and Step 25: Enter "ala"
+    # Step 17: Click on the "Search:" text field and Step 25: Enter "ala"
     search_field = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "list_table_length")))
     search_field.click()
     
@@ -108,7 +98,6 @@ try:
 
 
 finally:
-    # Close the browser after testing
     print("Test Successful")
     time.sleep(3)
     driver.quit()
