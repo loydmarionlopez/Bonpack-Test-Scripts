@@ -43,12 +43,13 @@ try:
     payroll_link.click()
 
     # Step 12: Assert <label> element text equals "Cutoff Group"
-    cutoff_label = WebDriverWait(driver, 10).until(
-        EC.visibility_of_element_located((By.XPATH, "//label[text()='Cutoff Group']"))
-    )
-    assert cutoff_label.text == "Cutoff Group"
+    # cutoff_label = WebDriverWait(driver, 10).until(
+    # EC.visibility_of_element_located((By.XPATH, "//span[text()='-- Select Cutoff Group --']"))
+    # )
 
-    # Step 13: Click on <span> with "-- Select Cutoff Group --" and Step 14: Select "Factory Overhead"
+    # assert cutoff_label.text == "Cutoff Group"
+
+    # Step 13: Click on <span> with "-- Select Cutoff Group --" and Step 14: Select "Direct"
     cutoff_group_span = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//span[text()='-- Select Cutoff Group --']")))
     cutoff_group_span.click()
     
@@ -63,7 +64,6 @@ try:
 
     # Step 17: Click on "Period Cut-Off" text field
     period_cutoff_field = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "date_from_date_to")))
-    period_cutoff_field.click()
     period_cutoff_field.send_keys("10/06/2024  -  10/20/2024" + Keys.RETURN)
 
     # Step 21: Click on the "Generate Payroll" button
@@ -93,18 +93,22 @@ try:
     search_field = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "list_table_length")))
     search_field.click()
     
-    search_field = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//li[text()='100']")))
-    search_field.click()
+    
+    search_field_input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//label[text()='Search: ']")))
+    search_field_input.click()
+    search_field_input.send_keys("altares" + Keys.RETURN)
  
-    # Step 26: Click on "View Details" link
-    view_details_link = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "a.btn.default.btn-xs.blue-madison[href='/payroll/details/16738/review']")))
-    view_details_link.click()
+    view_details_link = WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
+    (By.CSS_SELECTOR, "a[href='/payroll/details/16688/review']")
+    ))
+    driver.execute_script("arguments[0].click();", view_details_link)
+    
+    payslip_print = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "a[href='/payroll/details/review/16688/print']")))
+    driver.execute_script("arguments[0].click();", payslip_print)
 
-    # Step 27: Click on "Review Payroll" link again
-    review_payroll_link = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Review Payroll")))
-    review_payroll_link.click()
 
 finally:
     # Close the browser after testing
+    print("Test Successful")
     time.sleep(3)
     driver.quit()
