@@ -79,7 +79,7 @@ try:
     payroll_filter_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "btn_filter")))
     payroll_filter_button.click()
 
-    # Step 17: Click on the "Search:" text field and Step 25: Enter "ala"
+    # Step 17: Click on the "Search:" text field and Step 18: Enter "altares"
     search_field = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "list_table_length")))
     search_field.click()
     
@@ -89,7 +89,7 @@ try:
     search_field_input.send_keys("altares" + Keys.RETURN)
  
     view_details_link = WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
-    (By.CSS_SELECTOR, "a[href='/payroll/details/16688/review']")
+    (By.CSS_SELECTOR, "a[href='/payroll/details/16688/review']") # replace ID if necessary
     ))
     driver.execute_script("arguments[0].click();", view_details_link)
     
